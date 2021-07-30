@@ -1,9 +1,10 @@
 const express = require("express");
 const app = express();
+const dbConnection = require("./config/db");
 
 const PORT = process.env.port || 5000;
 
-app.use("/api/users", require("./router/usersRouter"));
+app.use("/api/user", require("./router/userRouter"));
 app.use("/api/auth", require("./router/authRouter"));
 app.use("/api/contracts", require("./router/contractsRouter"));
 
