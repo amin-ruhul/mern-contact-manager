@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt");
 const router = express.Router();
 const User = require("../models/User");
 
+// register user
 router.post(
   "/",
   [
