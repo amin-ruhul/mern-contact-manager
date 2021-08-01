@@ -1,0 +1,58 @@
+.card {
+  background-color: #f8e2cf;
+  padding: 1rem;
+  margin: 1rem;
+  width: 40rem;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.603);
+  position: relative;
+}
+
+.card p {
+  font-size: 1.7rem;
+  margin: 0.5rem;
+}
+
+.title {
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+
+.tag {
+  background-color: rgba(0, 128, 0, 0.699);
+  color: white;
+  padding: 0.5rem 0.5rem;
+  font-size: 1rem;
+  position: absolute;
+  top: 0.7rem;
+  right: 1rem;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px rgba(137, 43, 226, 0.671);
+}
+
+.btn {
+  border: none;
+  border-radius: 3px;
+  margin: 0.5rem 1rem;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+}
+
+.edit {
+  background-color: rgba(65, 105, 225, 0.74);
+  border: 1px solid rgba(65, 105, 225, 0.74);
+}
+
+.edit:hover {
+  color: rgba(65, 105, 225, 0.74);
+  background-color: white;
+}
+.delete {
+  background-color: rgba(255, 0, 0, 0.685);
+  border: 1px solid rgba(255, 0, 0, 0.685);
+}
+
+.delete:hover {
+  color: rgba(255, 0, 0, 0.685);
+  background-color: white;
+}
