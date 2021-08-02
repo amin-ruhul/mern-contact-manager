@@ -4,7 +4,6 @@ import Contacts from "../contacts/Contacts";
 function Home() {
   return (
     <div>
-      <h1>Home</h1>
       <Contacts />
     </div>
   );

@@ -1,0 +1,45 @@
+.card {
+  padding: 2rem;
+  width: 40rem;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.644);
+  font-size: 1.5rem;
+  background-color: wheat;
+}
+
+.heading {
+  text-align: center;
+  margin: 0 1rem 2rem 0;
+}
+
+.formGroup input {
+  display: block;
+  width: 100%;
+  margin: 1rem 0rem;
+  padding: 0.5rem;
+  outline: none;
+}
+
+.checkBoxGroup {
+  font-size: 1.4rem;
+  display: flex;
+}
+
+.checkBoxGroup input {
+  margin-right: 0.5rem;
+}
+
+.tagSpan {
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  border: none;
+  margin: 1rem 0;
+  padding: 0.8rem 2rem;
+  background-image: linear-gradient(to left, #54436b, #2b2b2b);
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}

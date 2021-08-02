@@ -1,0 +1,12 @@
+body {
+  background: linear-gradient(
+    to right,
+    hsla(120, 100%, 25%, 0.589),
+    hsla(60, 100%, 50%, 0.568)
+  );
+}
+
+.contact {
+  display: flex;
+  justify-content: space-between;
+}
