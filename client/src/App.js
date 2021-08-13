@@ -5,7 +5,6 @@ import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import ContactState from "./context/contact/ContactState";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
 function App() {
   return (
     <ContactState>
