@@ -11,6 +11,7 @@ import {
   REMOVE_ALERT,
   SET_ALERT,
   SET_CURRENT,
+  CLEAR_CURRENT,
 } from "./action";
 
 function ContactState(props) {
@@ -38,6 +39,7 @@ function ContactState(props) {
         tag: "personal",
       },
     ],
+    current: null,
   };
   const [state, dispatch] = useReducer(contactReducer, initialState);
 
@@ -47,9 +49,39 @@ function ContactState(props) {
     contact.id = uuid();
     dispatch({ type: CREATE_CONTACT, payload: contact });
   };
+  // update contact
+
+  const updateContact = (contact) => {
+    dispatch({ type: UPDATE_CONTACT, payload: contact });
+  };
+  // delete contact
+
+  const deleteContact = (id) => {
+    dispatch({ type: DELETE_CONTACT, payload: id });
+  };
+
+  // setCurrent
+  const setCurrent = (current) => {
+    dispatch({ type: SET_CURRENT, payload: current });
+  };
+
+  // clearCurrent
+  const clearCurrent = () => {
+    dispatch({ type: CLEAR_CURRENT, payload: null });
+  };
 
   return (
-    <ContactContext.Provider value={{ contacts: state.contacts, addContact }}>
+    <ContactContext.Provider
+      value={{
+        contacts: state.contacts,
+        current: state.current,
+        addContact,
+        deleteContact,
+        setCurrent,
+        clearCurrent,
+        updateContact,
+      }}
+    >
       {props.children}
     </ContactContext.Provider>
   );

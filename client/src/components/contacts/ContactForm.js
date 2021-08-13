@@ -1,15 +1,29 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styles from "../../assets/css/Form.module.css";
 import ContactContext from "../../context/contact/ContactContext";
 
 function ContactForm() {
   const contactContext = useContext(ContactContext);
+  const { addContact, current, clearCurrent, updateContact } = contactContext;
   const [contact, setContact] = useState({
     name: "",
     email: "",
     phone: "",
     tag: "",
   });
+
+  useEffect(() => {
+    if (current) {
+      setContact(current);
+    } else {
+      setContact({
+        name: "",
+        email: "",
+        phone: "",
+        tag: "",
+      });
+    }
+  }, [current]);
 
   const { name, email, phone } = contact;
 
@@ -22,19 +36,25 @@ function ContactForm() {
 
   const handelSubmit = (e) => {
     e.preventDefault();
-    contactContext.addContact(contact);
-    setContact({
-      name: "",
-      email: "",
-      phone: "",
-      tag: "",
-    });
+    if (current) {
+      updateContact(contact);
+    } else {
+      addContact(contact);
+    }
+    clearForm(e);
+  };
+
+  const clearForm = (e) => {
+    e.preventDefault();
+    clearCurrent();
   };
 
   return (
     <div className={styles.card}>
       <form action="" onSubmit={handelSubmit}>
-        <h3 className={styles.heading}>Add New Contact</h3>
+        <h3 className={styles.heading}>
+          {current ? "Edit Contact" : "Add New Contact"}
+        </h3>
         <div className={styles.formGroup}>
           <input
             type="text"
@@ -78,7 +98,12 @@ function ContactForm() {
             <span>Professional</span>
           </span>
         </div>
-        <button className={styles.btn}>ADD</button>
+        <button className={styles.btn}>{current ? "Update" : "ADD"}</button>
+        {current && (
+          <button className={styles.Clearbtn} onClick={clearForm}>
+            Clear
+          </button>
+        )}
       </form>
     </div>
   );

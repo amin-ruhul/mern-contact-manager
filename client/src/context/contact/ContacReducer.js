@@ -7,6 +7,7 @@ import {
   REMOVE_ALERT,
   SET_ALERT,
   SET_CURRENT,
+  CLEAR_CURRENT,
 } from "./action";
 
 // eslint-disable-next-line
@@ -17,6 +18,28 @@ export default (state, action) => {
       return {
         ...state,
         contacts: [...state.contacts, payload],
+      };
+    case UPDATE_CONTACT:
+      return {
+        ...state,
+        contacts: state.contacts.map((contact) =>
+          contact.id !== payload.id ? contact : payload
+        ),
+      };
+    case DELETE_CONTACT:
+      return {
+        ...state,
+        contacts: state.contacts.filter((contact) => contact.id !== payload),
+      };
+    case SET_CURRENT:
+      return {
+        ...state,
+        current: payload,
+      };
+    case CLEAR_CURRENT:
+      return {
+        ...state,
+        current: payload,
       };
     default:
       return state;

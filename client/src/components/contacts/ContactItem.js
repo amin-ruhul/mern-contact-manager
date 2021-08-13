@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../../assets/css/ContactItem.module.css";
+import ContactContext from "../../context/contact/ContactContext";
 
-function ContactItem(props) {
-  const { name, email, phone, tag } = props.contact;
-  console.log(props.contact);
+function ContactItem({ contact }) {
+  const { id, name, email, phone, tag } = contact;
+  const contactContext = useContext(ContactContext);
+  const { deleteContact, setCurrent, clearCurrent } = contactContext;
+  const onDelete = () => {
+    deleteContact(id);
+    clearCurrent();
+  };
   return (
     <div className={styles.card}>
       <p>
@@ -22,8 +28,15 @@ function ContactItem(props) {
         {tag.charAt(0).toUpperCase() + tag.slice(1)}
       </span>
       <div>
-        <button className={`${styles.btn} ${styles.edit}`}>Edit</button>
-        <button className={`${styles.btn} ${styles.delete}`}>Delete</button>
+        <button
+          className={`${styles.btn} ${styles.edit}`}
+          onClick={() => setCurrent(contact)}
+        >
+          Edit
+        </button>
+        <button className={`${styles.btn} ${styles.delete}`} onClick={onDelete}>
+          Delete
+        </button>
       </div>
     </div>
   );
