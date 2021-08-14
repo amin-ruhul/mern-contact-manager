@@ -12,12 +12,12 @@ import AuthContext from "./authContext";
 
 function AuthState(props) {
   const initialState = {
-    authToken: localStorage.getItem("token"),
+    authToken: "ttttt", // localStorage.getItem("token"),
     user: null,
     error: null,
     loading: true,
   };
-  const { state, dispatch } = useReducer(authReducer, initialState);
+  const [state, dispatch] = useReducer(authReducer, initialState);
 
   return (
     <AuthContext.Provider
