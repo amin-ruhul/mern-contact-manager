@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import AuthContext from "../../context/auth/authContext";
 
 function Register() {
+  const authContext = useContext(AuthContext);
   const [user, setUser] = useState({
     name: "",
     email: "",
     password: "",
     password2: "",
   });
+
+  const { register, error, clearError } = authContext;
 
   const { name, email, password, password2 } = user;
   const handelChange = (e) => {
@@ -18,10 +22,13 @@ function Register() {
   const handelSubmit = (e) => {
     e.preventDefault();
     console.log(user);
+    console.log("error", error);
+    register(user);
   };
   return (
     <div>
       <form onSubmit={handelSubmit}>
+        {error !== null && <h5>{error}</h5>}
         <input
           type="text"
           name="name"
