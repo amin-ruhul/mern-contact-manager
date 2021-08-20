@@ -43,6 +43,15 @@ export default (state, action) => {
         user: null,
         isAuthenticated: false,
       };
+    case LOGOUT:
+      return {
+        ...state,
+        authToken: null,
+        error: null,
+        loading: false,
+        user: null,
+        isAuthenticated: false,
+      };
     case CLEAR_ERROR:
       return {
         ...state,
