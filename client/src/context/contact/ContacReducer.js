@@ -8,6 +8,7 @@ import {
   SET_ALERT,
   SET_CURRENT,
   CLEAR_CURRENT,
+  FAIL_TO_CREATE,
 } from "./action";
 
 // eslint-disable-next-line
@@ -53,6 +54,11 @@ export default (state, action) => {
       return {
         ...state,
         filtered: payload,
+      };
+    case FAIL_TO_CREATE:
+      return {
+        ...state,
+        error: payload,
       };
     default:
       return state;
