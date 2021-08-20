@@ -44,6 +44,7 @@ export default (state, action) => {
         isAuthenticated: false,
       };
     case LOGOUT:
+      localStorage.removeItem("token");
       return {
         ...state,
         authToken: null,

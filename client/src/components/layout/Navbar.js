@@ -14,11 +14,6 @@ function Navbar() {
     <div className={styles.navbar}>
       <div className="logo">CM</div>
       <ul className={styles.navLinks}>
-        <li className={styles.navLink}>
-          <Link className={styles.link} to="/">
-            Home
-          </Link>
-        </li>
         {isAuthenticated && (
           <>
             <li className={styles.navLink} onClick={handelClick}>
