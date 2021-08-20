@@ -5,7 +5,12 @@ import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import ContactState from "./context/contact/ContactState";
 import AuthState from "./context/auth/AuthState";
+import setAuthToken from "./utils/authToken";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 function App() {
   return (
     <AuthState>
