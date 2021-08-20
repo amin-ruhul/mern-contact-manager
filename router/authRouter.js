@@ -33,10 +33,10 @@ router.post(
     const { email, password } = req.body;
     let user = await User.findOne({ email });
 
-    if (!user) return res.status(400).json({ message: "Invalid credential" });
+    if (!user) return res.status(400).json({ error: "Invalid credential" });
     const isMatchPass = bcrypt.compare(password, user.password);
     if (!isMatchPass)
-      return res.status(400).json({ message: "Invalid credential" });
+      return res.status(400).json({ error: "Invalid credential" });
 
     const payload = {
       user: {

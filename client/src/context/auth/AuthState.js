@@ -24,6 +24,7 @@ function AuthState(props) {
   };
   const [state, dispatch] = useReducer(authReducer, initialState);
 
+  // load logged in user
   const loadUser = async () => {
     if (localStorage.token) {
       setAuthToken(localStorage.token);
@@ -37,6 +38,7 @@ function AuthState(props) {
     }
   };
 
+  // register new user
   const register = async (data) => {
     const config = {
       headers: {
@@ -53,6 +55,23 @@ function AuthState(props) {
     }
   };
 
+  // login user
+  const login = async (data) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post("/api/auth", data, config);
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+      loadUser();
+    } catch (error) {
+      dispatch({ type: LOGIN_FAIL, payload: error.response.data.error });
+    }
+  };
+
+  // clear existing error
   const clearError = () => {
     dispatch({ type: CLEAR_ERROR });
   };
@@ -68,6 +87,7 @@ function AuthState(props) {
         register,
         clearError,
         loadUser,
+        login,
       }}
     >
       {props.children}
