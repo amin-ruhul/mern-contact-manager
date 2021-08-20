@@ -9,6 +9,8 @@ import {
   SET_CURRENT,
   CLEAR_CURRENT,
   FAIL_TO_CREATE,
+  LOAD_CONTACT,
+  CLEAR_CONTACT,
 } from "./action";
 
 // eslint-disable-next-line
@@ -20,12 +22,26 @@ export default (state, action) => {
         ...state,
         contacts: [...state.contacts, payload],
       };
+    case LOAD_CONTACT:
+      return {
+        ...state,
+        contacts: payload,
+        loading: false,
+      };
     case UPDATE_CONTACT:
       return {
         ...state,
         contacts: state.contacts.map((contact) =>
           contact.id !== payload.id ? contact : payload
         ),
+      };
+    case CLEAR_CONTACT:
+      return {
+        contacts: null,
+        current: null,
+        filtered: null,
+        error: null,
+        loading: false,
       };
     case DELETE_CONTACT:
       return {

@@ -13,14 +13,17 @@ import {
   SET_CURRENT,
   CLEAR_CURRENT,
   FAIL_TO_CREATE,
+  LOAD_CONTACT,
+  CLEAR_CONTACT,
 } from "./action";
 
 function ContactState(props) {
   const initialState = {
-    contacts: [],
+    contacts: null,
     current: null,
     filtered: null,
     error: null,
+    loading: true,
   };
   const [state, dispatch] = useReducer(contactReducer, initialState);
 
@@ -39,6 +42,23 @@ function ContactState(props) {
       dispatch({ type: FAIL_TO_CREATE, payload: error.response.data.error });
     }
   };
+
+  // LOAD CONTACT
+  const loadContact = async () => {
+    try {
+      const res = await axios.get("/api/contacts");
+      dispatch({ type: LOAD_CONTACT, payload: res.data });
+    } catch (error) {
+      dispatch({ type: FAIL_TO_CREATE, payload: error.response.data.error });
+    }
+  };
+
+  // clear contact
+
+  const clearContact = () => {
+    dispatch({ type: CLEAR_CONTACT });
+  };
+
   // update contact
 
   const updateContact = (contact) => {
@@ -77,6 +97,7 @@ function ContactState(props) {
         current: state.current,
         filtered: state.filtered,
         error: state.error,
+        loading: state.loading,
         addContact,
         deleteContact,
         setCurrent,
@@ -84,6 +105,8 @@ function ContactState(props) {
         updateContact,
         filterContact,
         clearFilter,
+        loadContact,
+        clearContact,
       }}
     >
       {props.children}

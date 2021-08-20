@@ -2,13 +2,17 @@ import React, { useContext } from "react";
 import styles from "../../assets/css/Navbar.module.css";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
+import ContactContext from "../../context/contact/ContactContext";
 
 function Navbar() {
   const authContext = useContext(AuthContext);
+  const contactContext = useContext(ContactContext);
   const { user, isAuthenticated, logout } = authContext;
+  const { clearContact } = contactContext;
 
   const handelClick = () => {
     logout();
+    clearContact();
   };
   return (
     <div className={styles.navbar}>
