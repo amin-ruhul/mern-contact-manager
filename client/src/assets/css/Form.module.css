@@ -71,3 +71,17 @@
   padding: 4px;
   border-radius: 5px;
 }
+
+.passwordWrapper {
+  position: relative;
+  background-color: royalblue;
+}
+
+.EyeIcon {
+  position: absolute;
+  display: inline-block;
+  background-color: seashell;
+  right: 5px;
+  top: 7px;
+  cursor: pointer;
+}

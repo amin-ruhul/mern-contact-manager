@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "../../context/auth/authContext";
 import Styles from "../../assets/css/Form.module.css";
+import EyeClose from "../EyeClose";
+import EyeOpen from "../EyeOpen";
 
 function Register(props) {
   const authContext = useContext(AuthContext);
@@ -10,23 +12,27 @@ function Register(props) {
     password: "",
     password2: "",
   });
+  const [err, setErr] = useState(null);
+  const [hidden, setHidden] = useState(true);
 
   const { register, error, clearError, isAuthenticated } = authContext;
-  const [err, setErr] = useState(null);
-
   const { name, email, password, password2 } = user;
+
+  // redirect user base on status
   useEffect(() => {
     if (isAuthenticated) {
       props.history.push("/");
     }
   }, [isAuthenticated, props.history]);
 
+  // set state value
   const handelChange = (e) => {
     setUser({
       ...user,
       [e.target.name]: e.target.value,
     });
   };
+
   const handelSubmit = (e) => {
     e.preventDefault();
     if (password === password2) {
@@ -35,15 +41,16 @@ function Register(props) {
       setErr("Password Not Match");
     }
   };
+
+  // clear frontend error
   if (err === "Password Not Match") {
     setTimeout(() => {
       setErr("");
     }, 2000);
   }
-
+  // clear backend error
   if (error !== null) clearError();
-  console.log("Fron", err);
-  console.log("Back", error);
+
   return (
     <div className={`${Styles.card} ${Styles.middle}`}>
       <form onSubmit={handelSubmit}>
@@ -72,22 +79,32 @@ function Register(props) {
             onChange={handelChange}
             required
           />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={password}
-            onChange={handelChange}
-            required
-          />
-          <input
-            type="password"
-            name="password2"
-            placeholder="Confirm Password"
-            value={password2}
-            onChange={handelChange}
-            required
-          />
+          <div className={Styles.passwordWrapper}>
+            <input
+              type={hidden ? "password" : "text"}
+              name="password"
+              placeholder="Password"
+              value={password}
+              onChange={handelChange}
+              required
+            />
+            <div className={Styles.EyeIcon} onClick={() => setHidden(!hidden)}>
+              {hidden ? <EyeOpen /> : <EyeClose />}
+            </div>
+          </div>
+          <div className={Styles.passwordWrapper}>
+            <input
+              type={hidden ? "password" : "text"}
+              name="password2"
+              placeholder="Confirm Password"
+              value={password2}
+              onChange={handelChange}
+              required
+            />
+            <div className={Styles.EyeIcon} onClick={() => setHidden(!hidden)}>
+              {hidden ? <EyeOpen /> : <EyeClose />}
+            </div>
+          </div>
         </div>
         <input type="submit" className={Styles.btn} value="Register" />
       </form>
