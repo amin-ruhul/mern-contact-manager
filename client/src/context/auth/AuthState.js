@@ -76,7 +76,9 @@ function AuthState(props) {
   };
   // clear existing error
   const clearError = () => {
-    dispatch({ type: CLEAR_ERROR });
+    setTimeout(() => {
+      dispatch({ type: CLEAR_ERROR });
+    }, 2000);
   };
 
   return (

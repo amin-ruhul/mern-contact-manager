@@ -12,6 +12,7 @@ function Register(props) {
   });
 
   const { register, error, clearError, isAuthenticated } = authContext;
+  const [err, setErr] = useState(null);
 
   const { name, email, password, password2 } = user;
   useEffect(() => {
@@ -19,6 +20,7 @@ function Register(props) {
       props.history.push("/");
     }
   }, [isAuthenticated, props.history]);
+
   const handelChange = (e) => {
     setUser({
       ...user,
@@ -27,15 +29,32 @@ function Register(props) {
   };
   const handelSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
-    console.log("error", error);
-    register(user);
+    if (password === password2) {
+      register(user);
+    } else {
+      setErr("Password Not Match");
+    }
   };
+  if (err === "Password Not Match") {
+    setTimeout(() => {
+      setErr("");
+    }, 2000);
+  }
+
+  if (error !== null) clearError();
+  console.log("Fron", err);
+  console.log("Back", error);
   return (
     <div className={`${Styles.card} ${Styles.middle}`}>
       <form onSubmit={handelSubmit}>
         <h3 className={Styles.heading}>Register</h3>
-        {error !== null && <h5>{error}</h5>}
+        {(err || error) && (
+          <div className={Styles.error}>
+            {err && <h5>{err}</h5>}
+            {error && <h5>{error}</h5>}
+          </div>
+        )}
+
         <div className={Styles.formGroup}>
           <input
             type="text"

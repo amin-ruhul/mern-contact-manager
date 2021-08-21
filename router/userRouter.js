@@ -19,7 +19,7 @@ router.post(
   async (req, res) => {
     const error = validationResult(req);
     if (!error.isEmpty()) {
-      return res.status(400).json({ error: error.array() });
+      return res.status(400).json({ error: "Enter Valid Info" });
     }
     const { name, email, password } = req.body;
     try {

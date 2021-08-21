@@ -34,7 +34,7 @@ router.post(
     let user = await User.findOne({ email });
 
     if (!user) return res.status(400).json({ error: "Invalid credential" });
-    const isMatchPass = bcrypt.compare(password, user.password);
+    const isMatchPass = await bcrypt.compare(password, user.password);
     if (!isMatchPass)
       return res.status(400).json({ error: "Invalid credential" });
 

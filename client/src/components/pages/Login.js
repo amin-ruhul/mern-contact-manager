@@ -4,33 +4,18 @@ import Styles from "../../assets/css/Form.module.css";
 
 function Login(props) {
   const authContext = useContext(AuthContext);
-  const { login, isAuthenticated, error } = authContext;
+  const { login, isAuthenticated, error, clearError } = authContext;
   const [user, setUser] = useState({
     email: "",
     password: "",
-    errorMessage: "",
   });
-  // if (error) {
-  //   setUser({
-  //     ...user,
-  //     errorMessage: error,
-  //   });
-  // }
   useEffect(() => {
     if (isAuthenticated) {
       props.history.push("/");
     }
-    // if (error) {
-    //   setTimeout(() => {
-    //     setUser({
-    //       ...user,
-    //       errorMessage: error,
-    //     });
-    //   }, 2000);
-    // }
-  }, [isAuthenticated, props.history]);
+  }, [isAuthenticated, props.history, error]);
 
-  const { email, password, errorMessage } = user;
+  const { email, password } = user;
 
   const handelChange = (e) => {
     setUser({
@@ -42,11 +27,15 @@ function Login(props) {
     e.preventDefault();
     login({ email, password });
   };
+
+  if (error !== null) clearError();
   return (
     <div className={`${Styles.card} ${Styles.middle}`}>
       <form onSubmit={handelSubmit}>
         <h3 className={Styles.heading}>Login</h3>
-        {error && <h5>{error}</h5>}
+        {error && (
+          <div className={Styles.error}>{error && <h5>{error}</h5>}</div>
+        )}
         <div className={Styles.formGroup}>
           <input
             type="email"
