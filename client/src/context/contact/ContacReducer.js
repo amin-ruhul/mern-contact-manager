@@ -32,7 +32,7 @@ export default (state, action) => {
       return {
         ...state,
         contacts: state.contacts.map((contact) =>
-          contact.id !== payload.id ? contact : payload
+          contact._id !== payload._id ? contact : payload
         ),
       };
     case CLEAR_CONTACT:

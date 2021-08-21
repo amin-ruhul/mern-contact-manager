@@ -25,7 +25,7 @@ function ContactForm() {
     }
   }, [current]);
 
-  const { name, email, phone } = contact;
+  const { name, email, phone, tag } = contact;
 
   const handelChange = (e) => {
     setContact({

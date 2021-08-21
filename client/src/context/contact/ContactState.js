@@ -61,8 +61,25 @@ function ContactState(props) {
 
   // update contact
 
-  const updateContact = (contact) => {
-    dispatch({ type: UPDATE_CONTACT, payload: contact });
+  const updateContact = async (contact) => {
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const res = await axios.put(
+        `/api/contacts/${contact._id}`,
+        contact,
+        config
+      );
+      dispatch({ type: UPDATE_CONTACT, payload: res.data });
+      console.log("contact:", contact);
+      //dispatch({ type: UPDATE_CONTACT, payload: contact });
+    } catch (error) {
+      dispatch({ type: FAIL_TO_CREATE, payload: error.response.data.error });
+    }
   };
   // delete contact
 
