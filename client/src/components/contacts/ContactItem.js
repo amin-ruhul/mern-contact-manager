@@ -3,11 +3,11 @@ import styles from "../../assets/css/ContactItem.module.css";
 import ContactContext from "../../context/contact/ContactContext";
 
 function ContactItem({ contact }) {
-  const { id, name, email, phone, tag } = contact;
+  const { _id, name, email, phone, tag } = contact;
   const contactContext = useContext(ContactContext);
   const { deleteContact, setCurrent, clearCurrent } = contactContext;
   const onDelete = () => {
-    deleteContact(id);
+    deleteContact(_id);
     clearCurrent();
   };
   return (

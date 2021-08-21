@@ -7,13 +7,14 @@ import SearchContact from "./SearchContact";
 
 function Contacts() {
   const contactContext = useContext(ContactContext);
-  const { contacts, filtered, loadContact, loading } = contactContext;
+  const { contacts, filtered, loadContact, loading, error } = contactContext;
 
   useEffect(() => {
     loadContact();
     // eslint-disable-next-line
   }, []);
   console.log(contacts);
+  console.log(error);
   return (
     <div className={styles.contact}>
       <div>
@@ -29,7 +30,7 @@ function Contacts() {
             contacts.map((contact) => (
               <ContactItem key={contact._id} contact={contact} />
             ))}
-        {contacts !== null && contacts.length && !loading === 0 && (
+        {contacts !== null && contacts.length === 0 && !loading && (
           <h3>No contact Available</h3>
         )}
         {loading && <h5>Loading...</h5>}

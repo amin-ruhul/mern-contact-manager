@@ -47,6 +47,12 @@ function ContactForm() {
   const clearForm = (e) => {
     e.preventDefault();
     clearCurrent();
+    setContact({
+      name: "",
+      email: "",
+      phone: "",
+      tag: "",
+    });
   };
 
   return (
