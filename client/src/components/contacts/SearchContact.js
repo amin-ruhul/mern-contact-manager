@@ -1,5 +1,6 @@
 import React, { useRef, useContext } from "react";
 import ContactContext from "../../context/contact/ContactContext";
+import Styles from "../../assets/css/Contact.module.css";
 
 function SearchContact() {
   const contactContext = useContext(ContactContext);
@@ -14,8 +15,13 @@ function SearchContact() {
     }
   };
   return (
-    <form>
-      <input ref={term} type="text" onChange={handelChange} />
+    <form className={Styles.search}>
+      <input
+        ref={term}
+        type="text"
+        onChange={handelChange}
+        placeholder="Enter your search keyword..."
+      />
     </form>
   );
 }

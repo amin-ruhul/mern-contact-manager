@@ -20,7 +20,7 @@ function Contacts() {
       <div>
         <ContactForm />
       </div>
-      <div>
+      <div className={styles.contentWrapper}>
         <SearchContact />
         {contacts && filtered !== null
           ? filtered.map((contact) => (
