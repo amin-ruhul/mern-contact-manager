@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../../context/auth/authContext";
+import Styles from "../../assets/css/Form.module.css";
 
 function Login(props) {
   const authContext = useContext(AuthContext);
@@ -42,26 +43,29 @@ function Login(props) {
     login({ email, password });
   };
   return (
-    <div>
+    <div className={`${Styles.card} ${Styles.middle}`}>
       <form onSubmit={handelSubmit}>
+        <h3 className={Styles.heading}>Login</h3>
         {error && <h5>{error}</h5>}
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={email}
-          onChange={handelChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={password}
-          onChange={handelChange}
-          required
-        />
-        <input type="submit" value="Login" />
+        <div className={Styles.formGroup}>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={email}
+            onChange={handelChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={password}
+            onChange={handelChange}
+            required
+          />
+        </div>
+        <input className={Styles.btn} type="submit" value="Login" />
       </form>
     </div>
   );

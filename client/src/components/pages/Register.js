@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "../../context/auth/authContext";
+import Styles from "../../assets/css/Form.module.css";
 
 function Register(props) {
   const authContext = useContext(AuthContext);
@@ -31,38 +32,45 @@ function Register(props) {
     register(user);
   };
   return (
-    <div>
+    <div className={`${Styles.card} ${Styles.middle}`}>
       <form onSubmit={handelSubmit}>
+        <h3 className={Styles.heading}>Register</h3>
         {error !== null && <h5>{error}</h5>}
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={name}
-          onChange={handelChange}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={email}
-          onChange={handelChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={password}
-          onChange={handelChange}
-        />
-        <input
-          type="password"
-          name="password2"
-          placeholder="Confirm Password"
-          value={password2}
-          onChange={handelChange}
-        />
-        <input type="submit" value="Register" />
+        <div className={Styles.formGroup}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={name}
+            onChange={handelChange}
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={email}
+            onChange={handelChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={password}
+            onChange={handelChange}
+            required
+          />
+          <input
+            type="password"
+            name="password2"
+            placeholder="Confirm Password"
+            value={password2}
+            onChange={handelChange}
+            required
+          />
+        </div>
+        <input type="submit" className={Styles.btn} value="Register" />
       </form>
     </div>
   );
