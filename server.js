@@ -3,8 +3,6 @@ const app = express();
 const dbConnection = require("./config/db");
 const path = require("path");
 
-const PORT = process.env.port || 5000;
-
 app.use(express.json());
 dbConnection();
 
@@ -19,6 +17,7 @@ if (process.env.NODE_ENV === "production") {
   );
 }
 
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`server running at port: ${PORT}`);
 });
