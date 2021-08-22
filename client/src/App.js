@@ -1,6 +1,7 @@
 import Navbar from "./components/layout/Navbar";
-import Home from "./components/pages/Home";
+import Dashboard from "./components/pages/Dashboard";
 import About from "./components/pages/About";
+import Home from "./components/pages/Home";
 import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import ContactState from "./context/contact/ContactState";
@@ -21,7 +22,8 @@ function App() {
             <Navbar />
             <div className="container">
               <Switch>
-                <PrivateRoute exact path="/" component={Home} />
+                <Route exact path="/" component={Home} />
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/about" component={About} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />

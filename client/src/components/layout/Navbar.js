@@ -16,7 +16,10 @@ function Navbar() {
   };
   return (
     <div className={styles.navbar}>
-      <div className="logo">CM</div>
+      <Link to="/" style={{ textDecoration: "none" }}>
+        <div className="logo">CM</div>
+      </Link>
+
       <ul className={styles.navLinks}>
         {isAuthenticated && (
           <>

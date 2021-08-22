@@ -14,7 +14,7 @@ function Login(props) {
   const [hidden, setHidden] = useState(true);
   useEffect(() => {
     if (isAuthenticated) {
-      props.history.push("/");
+      props.history.push("/dashboard");
     }
   }, [isAuthenticated, props.history, error]);
 

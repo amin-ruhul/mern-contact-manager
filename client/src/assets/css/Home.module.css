@@ -1,0 +1,33 @@
+.home {
+  display: flex;
+  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 80%;
+}
+.btn {
+  font-size: 14px;
+  display: inline-block;
+  background-image: linear-gradient(
+    to right,
+    #4b6cb7 0%,
+    #182848 51%,
+    #4b6cb7 100%
+  );
+  padding: 10px 20px;
+  background-size: 200% auto;
+  margin-top: 10px;
+  color: white;
+  transition: 0.5s;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+}

@@ -1,16 +1,24 @@
-import React, { useEffect, useContext } from "react";
-import Contacts from "../contacts/Contacts";
-import AuthContext from "../../context/auth/authContext";
-
+import Styles from "../../assets/css/Home.module.css";
 function Home() {
-  const authContext = useContext(AuthContext);
-  useEffect(() => {
-    authContext.loadUser();
-    // eslint-disable-next-line
-  }, []);
   return (
-    <div>
-      <Contacts />
+    <div className={Styles.home}>
+      <div>
+        <h3>Kep Your contact Stored.</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, modi
+          nobis! Totam, molestiae qui.
+        </p>
+        <a className={Styles.btn} href="/register">
+          Get Started
+        </a>
+      </div>
+      <div>
+        <img
+          className={Styles.image}
+          src="https://opendoodles.s3-us-west-1.amazonaws.com/reading-side.svg"
+          alt=""
+        />
+      </div>
     </div>
   );
 }

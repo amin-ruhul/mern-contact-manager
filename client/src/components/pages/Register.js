@@ -21,7 +21,7 @@ function Register(props) {
   // redirect user base on status
   useEffect(() => {
     if (isAuthenticated) {
-      props.history.push("/");
+      props.history.push("/dashboard");
     }
   }, [isAuthenticated, props.history]);
 
