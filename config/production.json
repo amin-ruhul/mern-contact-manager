@@ -1,0 +1,4 @@
+{
+    "dbUrl": "mongodb+srv://user123:user123@cmanager.4oxd8.mongodb.net/myDatabase?retryWrites=true&w=majority",
+    "jwtSecret": "rtretbreutporn77&&inwt;erihtjtouejrqa667jenqjnrjhytr" 
+}
